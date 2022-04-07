@@ -1,0 +1,574 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>MDC-101 Android: Material Components (MDC) Basics (Java)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400%7CRoboto:400,300,400italic,500,700%7CRoboto+Mono">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="../../elements/codelab-elements/codelab-elements.css">
+  <style>.success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="mdc-101-java"
+                  title="MDC-101 Android: Material Components (MDC) Basics (Java)"
+                  environment="web"
+                  feedback-link="https://github.com/material-components/material-components-android-codelabs/issues">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <table>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img alt="logo_components_color_2x_web_96dp.png" style="width: 207.50px" src="https://lh5.googleusercontent.com/KNQczgscH4cJN-Z70I0Ssrs5foXDDYKiGvcQQOCMdFvF5Q7_c5Gbs3uqA3jhJCxM7hFD1H6pk0eDGiCXxMdxCX4nXioE7EBYIy7zPVtNocB7x40TQB-zc_Bdt3vUh1W9mIZLt8Wjmw"></p>
+</td><td colspan="1" rowspan="1"><p>Material Components (MDC) help developers implement Material Design. Created by a team of engineers and UX designers at Google, MDC features dozens of beautiful and functional UI components and is available for Android, iOS, web and Flutter.</p>
+<p>material.io/develop</p>
+</td></tr>
+</table>
+
+<h2 is-upgraded><strong>What are Material Design and Material Components for Android?</strong></h2>
+<p><strong>Material Design</strong> is a system for building bold and beautiful digital products. By uniting style, branding, interaction, and motion under a consistent set of principles and components, product teams can realize their greatest design potential.</p>
+
+<p>For Android applications, <strong>Material Components for Android </strong>(<strong>MDC Android</strong>) unites design and engineering with a library of components for creating consistency across your application. As the Material Design system evolves, these components are updated to ensure consistent pixel-perfect implementation and adherence to Google&#39;s front-end development standards. MDC is also available for web, iOS, and Flutter.</p>
+<p>In this codelab, you&#39;ll build a login page using several of MDC Android&#39;s components.</p>
+<h2 is-upgraded><strong>What you&#39;ll build</strong></h2>
+<p>This codelab is the first of 4 codelabs that will guide you through building an app called <strong>Shrine</strong>, an e-commerce Android app that sells clothing and home goods. It will demonstrate how you can customize components to reflect any brand or style using MDC-Android. </p>
+<p>In this codelab, you&#39;ll build a login page for Shrine that contains:</p>
+<ul>
+<li>Two text fields, one for entering a username and the other for a password</li>
+<li>Two buttons, one for &#34;Cancel&#34; and one for &#34;Next&#34;</li>
+<li>The name of the app (Shrine)</li>
+<li>An image of Shrine&#39;s logo</li>
+</ul>
+<p class="image-container"><img style="width: 343.50px" src="img/4cb0c218948144b4.png"></p>
+<aside class="special"><p>The related codelabs can be found at:</p>
+<ul>
+<li><a href="../mdc-102-java/index.html" target="_blank">MDC 102: Material Design Structure and Layout</a></li>
+<li><a href="../mdc-103-java/index.html" target="_blank">MDC 103: Material Design Theming with Color, Shape, Elevation and Type</a></li>
+<li><a href="../mdc-104-java/index.html" target="_blank">MDC 104: Material Design Advanced Components</a></li>
+</ul>
+<p>By the end of MDC 104, you&#39;ll build an Android app that looks like this:  </p>
+<p class="image-container"><img style="width: 196.43px" src="img/21c025467527a18e.png"><img style="width: 195.50px" src="img/46a878bade66f821.png"><img style="width: 195.93px" src="img/a87a58e2ccddbae5.png"></p>
+</aside>
+<h2 is-upgraded><strong>MDC Android components in this codelab</strong></h2>
+<ul>
+<li>Text Field</li>
+<li>Button</li>
+</ul>
+<aside class="special"><p>In this codelab you&#39;ll use the default components provided by MDC Android. You&#39;ll learn to customize them in <a href="../mdc-103-java/index.html" target="_blank">MDC 103: Material Design Theming with Color, Shape, Elevation and Type</a>.</p>
+</aside>
+<h2 is-upgraded><strong>What you&#39;ll need</strong></h2>
+<ul>
+<li>Basic knowledge of Android development</li>
+<li><strong>Android Studio </strong>(download it <a href="https://developer.android.com/studio/" target="_blank">here</a> if you don&#39;t already have it)</li>
+<li>An Android emulator or device (available through Android Studio)</li>
+<li>The sample code (see next step)</li>
+</ul>
+
+<google-codelab-survey survey-id="mdc-101-java-1">
+<h4>How would you rate your level of experience building Android apps?</h4>
+<paper-radio-group>
+<paper-radio-button>Novice</paper-radio-button>
+<paper-radio-button>Intermediate</paper-radio-button>
+<paper-radio-button>Proficient</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+<google-codelab-survey survey-id="mdc-101-java-2">
+<h4>Why are you taking this codelab?</h4>
+<paper-radio-group>
+<paper-radio-button>I am looking to solve a specific problem</paper-radio-button>
+<paper-radio-button>I want to be familiar with Material Components</paper-radio-button>
+<paper-radio-button>I need to learn Material Components now for a specific project or assignment</paper-radio-button>
+<paper-radio-button>I need to evaluate Material Components for possible use</paper-radio-button>
+<paper-radio-button>I want to enhance my general overall knowledge</paper-radio-button>
+<paper-radio-button>I am familiar with Material Components, but I want deeper knowledge</paper-radio-button>
+<paper-radio-button>Another reason</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Set up your development environment" duration="15">
+        <h2 is-upgraded><strong>Start up Android Studio</strong></h2>
+<p>When you open <strong>Android Studio</strong>, it should display a window titled &#34;Welcome to Android Studio&#34;. However, if this is your first time launching Android Studio, go through the <strong>Android Studio Setup Wizard</strong> steps with the <strong>default values</strong>. This step can take several minutes to download and install the necessary files, so feel free to leave this running in the background while doing the next section.</p>
+<h2 is-upgraded><strong>Download the starter codelab app</strong></h2>
+<p><a href="https://github.com/material-components/material-components-android-codelabs/archive/101-starter.zip" target="_blank"><paper-button class="colored" raised><iron-icon icon="file-download"></iron-icon>Download starter app</paper-button></a> </p>
+<p>The starter app is located within the <code>material-components-android-codelabs-101-starter/java</code> directory. </p>
+<h2 is-upgraded><strong>...or clone it from GitHub</strong></h2>
+<p>To clone this codelab from GitHub, run the following commands:</p>
+<pre>git clone https://github.com/material-components/material-components-android-codelabs
+cd material-components-android-codelabs/
+git checkout 101-starter</pre>
+<aside class="warning"><p>For more help: <a href="https://help.github.com/articles/cloning-a-repository/" target="_blank">Cloning a repository from GitHub</a></p>
+</aside>
+
+<h2 is-upgraded><strong>Load the starter code in Android Studio</strong></h2>
+<ol type="1" start="1">
+<li>Once the setup wizard finishes and the <strong>Welcome to Android Studio</strong> window is shown, click <strong>Open an existing Android Studio project</strong>. Navigate to the directory where you had installed the sample code, and select <strong>java -&gt; shrine </strong>(or search your computer for <strong>shrine</strong>) to open the Shrine project.</li>
+<li>Wait a moment for Android Studio to build and sync the project, as shown by activity indicators along the bottom of the Android Studio window.</li>
+<li>At this point, Android Studio might raise some build errors because you are missing the Android SDK or build tools, such as the one shown below. Follow the instructions in Android Studio to install/update these and <strong>sync</strong> your project.</li>
+</ol>
+<p class="image-container"><img style="width: 696.83px" src="https://lh3.googleusercontent.com/GjZI-uwuxyaIuE0_CfxzMfKXodUHkDS3vLciY4nCnDEqfaB80zHAdNLBw-c4AVksfKJOcnG3TSG4uJcU_eiGMAszfFTlg-L01l5EOatcXDCkWQ8vl-hHjU2rlPjkNkkT1_dYcYHQgA"></p>
+
+<h2 is-upgraded><strong>Add project dependencies</strong></h2>
+<p>The project needs a dependency on the <strong>MDC Android support library</strong>. The sample code you downloaded should already have this dependency listed, but it is good practice to do the following steps to make sure.</p>
+<ol type="1" start="1">
+<li>Navigate to the <code>app</code> module&#39;s <code>build.gradle</code> file and make sure that the <code>dependencies</code> block includes a dependency on MDC Android:</li>
+</ol>
+<pre>api &#39;com.google.android.material:material:1.1.0-alpha06&#39;</pre>
+<ol type="1" start="2">
+<li>(Optional) If necessary, edit the <code>build.gradle</code> file to add the following dependencies and sync the project.</li>
+</ol>
+<pre>dependencies {
+    api &#39;com.google.android.material:material:1.1.0-alpha06&#39;
+    implementation &#39;androidx.legacy:legacy-support-v4:1.0.0&#39;
+    implementation &#39;com.android.volley:volley:1.1.1&#39;
+    implementation &#39;com.google.code.gson:gson:2.8.5&#39;
+    implementation &#34;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.21&#34;
+    testImplementation &#39;junit:junit:4.12&#39;
+    androidTestImplementation &#39;androidx.test:core:1.1.0&#39;
+    androidTestImplementation &#39;androidx.test.ext:junit:1.1.0&#39;
+    androidTestImplementation &#39;androidx.test:runner:1.2.0-alpha05&#39;
+    androidTestImplementation &#39;androidx.test.espresso:espresso-core:3.2.0-alpha05&#39;
+}</pre>
+<h2 is-upgraded><strong>Run the starter app</strong></h2>
+<table>
+<tr><td colspan="1" rowspan="1"><ol type="1" start="1">
+<li>Ensure that the build configuration to the left of the <strong>Run / Play button</strong> is <code>app</code>. </li>
+<li>Press the green <strong>Run / Play button</strong> to build and run the app.</li>
+<li>In the <strong>Select Deployment Target</strong> window, if you already have an <strong>Android device</strong> listed in your available devices, skip to <strong>Step 8</strong>. Otherwise, click <strong>Create New Virtual Device</strong>. </li>
+<li>In the <strong>Select Hardware</strong> screen, select a phone device, such as <strong>Pixel 2</strong>, and then click <strong>Next</strong>.</li>
+<li>In the <strong>System Image</strong> screen, select a <strong>recent Android version</strong>, preferably the highest API level. If it is not installed, click the <strong>Download</strong> link that is shown and complete the download.</li>
+<li>Click <strong>Next</strong>.</li>
+<li>On the <strong>Android Virtual Device (AVD) </strong>screen, leave the settings as they are and click <strong>Finish</strong>.</li>
+<li>Select an <strong>Android device</strong> from the deployment target dialog. </li>
+<li>Click <strong>Ok</strong>.</li>
+<li>Android Studio builds the app, deploys it, and automatically opens it on the target device.</li>
+</ol>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 274.00px" src="https://lh6.googleusercontent.com/yYYImj-osrikyVdR13dovgZ62BQhvPPuDSs2s36aijgrlyJmSDRQ8hvGcF8h5vB0SMUSQobLoxaLZ0o4Qol-x6zQ-3rHTPWCUYyz70m4nf29l_fX1E5ct2ZfUv2pAaB3FhtRP5ES4w"></p>
+</td></tr>
+</table>
+<aside class="warning"><p>If you were unable to add the dependency or run the app successfully, stop and troubleshoot your developer environment.</p>
+</aside>
+<aside class="warning"><p>If you get an INSTALL_FAILED_INVALID_APK error when building, try doing a ‘<strong>Build</strong>&#39; -&gt; ‘<strong>Clean Project</strong>&#39; in Android Studio. </p>
+</aside>
+
+<p>Success! The starter code for Shrine&#39;s login page should be running in your emulator. You should see the name &#34;Shrine&#34; and the Shrine logo just below it.</p>
+<p class="image-container"><img style="width: 404.71px" src="img/e7ed014e84755811.png"></p>
+<p>Let&#39;s take a look at the code. We&#39;ve provided a simple <code>Fragment</code> navigation framework in our sample code to display fragments and navigate between fragments.</p>
+<p>Open up <code>MainActivity.java</code> in the <code>shrine -&gt; app -&gt; src -&gt; main -&gt; java -&gt; com.google.codelabs.mdc.java.shrine</code> directory. It should contain this:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-starter/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/MainActivity.java" target="_blank">MainActivity.java</a></h3>
+<pre><code>package com.google.codelabs.mdc.java.shrine;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+public class MainActivity extends AppCompatActivity implements NavigationHost {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.shr_main_activity);
+
+       if (savedInstanceState == null) {
+           getSupportFragmentManager()
+                   .beginTransaction()
+                   .add(R.id.container, new LoginFragment())
+                   .commit();
+       }
+   }
+
+   /**
+    * Navigate to the given fragment.
+    *
+    * @param fragment       Fragment to navigate to.
+    * @param addToBackstack Whether or not the current fragment should be added to the backstack.
+    */
+   @Override
+   public void navigateTo(Fragment fragment, boolean addToBackstack) {
+       FragmentTransaction transaction =
+               getSupportFragmentManager()
+                       .beginTransaction()
+                       .replace(R.id.container, fragment);
+
+       if (addToBackstack) {
+           transaction.addToBackStack(null);
+       }
+
+       transaction.commit();
+   }
+}</code></pre>
+<p>This activity displays the <code>R.layout.shr_main_activity</code> layout file, defined in <code>shr_main_activity.xml</code>. </p>
+<p>You can see that in <code>onCreate(),</code> <code>MainActivity.java</code> starts a <code>Fragment</code> transaction in order to show the <code>LoginFragment</code>. <code>LoginFragment.</code> That is what we will be modifying for this codelab. The activity also implements a <code>navigateTo(Fragment)</code> method, defined in <code>NavigationHost</code>, which lets any fragment navigate to a different fragment.</p>
+<p><strong>Command + Click</strong> (or <strong>Control + Click</strong>) <code>shr_main_activity</code> in the activity file to open up the layout file, or navigate to the layout file in <code>app -&gt; res -&gt; layout -&gt; shr_main_activity.xml</code>. </p>
+<aside class="special"><p>Note: If you see an application preview rather than an XML file when you open <code>shr_main_activity.xml</code>, switch from the &#34;<strong>Design</strong>&#34; tab to the &#34;<strong>Text</strong>&#34; tab in the bottom left of the panel. We will be working in the &#34;<strong>Text</strong>&#34; tab for the duration of this codelab.</p>
+</aside>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-starter/java/shrine/app/src/main/res/layout/shr_main_activity.xml" target="_blank">shr_main_activity.xml</a></h3>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;FrameLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+   xmlns:tools=&#34;http://schemas.android.com/tools&#34;
+   android:id=&#34;@+id/container&#34;
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;match_parent&#34;
+   tools:context=&#34;.MainActivity&#34; /&gt;</code></pre>
+<p>Here, we see a simple <code>&lt;FrameLayout&gt;</code> which acts as a container for any fragments the activity displays. Let&#39;s open up <code>LoginFragment.java</code>. </p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-starter/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/LoginFragment.java" target="_blank">LoginFragment.java</a></h3>
+<pre><code>package com.google.codelabs.mdc.java.shrine;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+/**
+* Fragment representing the login screen for Shrine.
+*/
+public class LoginFragment extends Fragment {
+
+   @Override
+   public View onCreateView(
+           @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+       // Inflate the layout for this fragment
+       View view = inflater.inflate(R.layout.shr_login_fragment, container, false);
+
+       // Snippet from &#34;Navigate to the next Fragment&#34; section goes here.
+
+       return view;
+   }
+
+   // &#34;isPasswordValid&#34; from &#34;Navigate to the next Fragment&#34; section method goes here
+}</code></pre>
+<p><code>LoginFragment</code> inflates the <code>shr_login_fragment</code> layout file and displays it in <code>onCreateView()</code>. Let&#39;s take a look at the <code>shr_login_fragment.xml</code> layout file to see what the login page looks like.</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-starter/java/shrine/app/src/main/res/layout/shr_login_fragment.xml" target="_blank">shr_login_fragment.xml</a></h3>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;ScrollView xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+   xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;
+   xmlns:tools=&#34;http://schemas.android.com/tools&#34;
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;match_parent&#34;
+   android:background=&#34;@color/loginPageBackgroundColor&#34;
+   tools:context=&#34;.LoginFragment&#34;&gt;
+
+   &lt;LinearLayout
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:clipChildren=&#34;false&#34;
+       android:clipToPadding=&#34;false&#34;
+       android:orientation=&#34;vertical&#34;
+       android:padding=&#34;24dp&#34;
+       android:paddingTop=&#34;16dp&#34;&gt;
+
+       &lt;ImageView
+           android:layout_width=&#34;64dp&#34;
+           android:layout_height=&#34;64dp&#34;
+           android:layout_gravity=&#34;center_horizontal&#34;
+           android:layout_marginTop=&#34;48dp&#34;
+           android:layout_marginBottom=&#34;16dp&#34;
+           app:srcCompat=&#34;@drawable/shr_logo&#34; /&gt;
+
+       &lt;TextView
+           android:layout_width=&#34;wrap_content&#34;
+           android:layout_height=&#34;wrap_content&#34;
+           android:layout_gravity=&#34;center_horizontal&#34;
+           android:layout_marginBottom=&#34;132dp&#34;
+           android:text=&#34;@string/shr_app_name&#34;
+           android:textAllCaps=&#34;true&#34;
+           android:textSize=&#34;16sp&#34; /&gt;
+
+       &lt;!-- Snippet from &#34;Add text fields&#34; section goes here. --&gt;
+
+       &lt;!-- Snippet from &#34;Add buttons&#34; section goes here. --&gt;
+
+   &lt;/LinearLayout&gt;
+&lt;/ScrollView&gt;</code></pre>
+<p>Here, we can see a <code>&lt;LinearLayout&gt;</code> with an <code>&lt;ImageView&gt;</code> at the top, representing the &#34;Shrine&#34; logo. </p>
+<p>Following that, there is a <code>&lt;TextView&gt;</code> tag representing the &#34;SHRINE&#34; label. The text for this label is a <strong>string resource</strong> named <code>@string/shr_app_name</code>. If you <strong>Command + Click</strong> (or <strong>Control + Click</strong>) the string resource name, or open  <code>app -&gt; res -&gt; values -&gt; strings.xml</code>, you can see the <code>strings.xml</code> file where string resources are defined. When more string resources are added in the future, they will be defined here. Every resource in this file should have a <code>shr_</code> prefix to denote that they are part of the Shrine app.</p>
+<p>Now that you&#39;re familiar with the starter code, let&#39;s implement our first component.</p>
+<google-codelab-survey survey-id="mdc-101-java-3">
+<h4>I was able to complete the setup for this codelab with a reasonable amount of time and effort.</h4>
+<paper-radio-group>
+<paper-radio-button>Strongly agree</paper-radio-button>
+<paper-radio-button>Agree</paper-radio-button>
+<paper-radio-button>Neutral</paper-radio-button>
+<paper-radio-button>Disagree</paper-radio-button>
+<paper-radio-button>Strongly disagree</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Add text fields" duration="6">
+        <p>To begin, we&#39;ll add two text fields to our login page for people to enter their username and password. We&#39;ll use the MDC Text Field component, which includes built-in functionality that displays a floating label and error messages.</p>
+<aside class="special"><p>Material Design text fields have been greatly enhanced to provide more customization options to support your brand, with improvements backed by extensive user experience (UX) research for better usability and visual design. </p>
+<p>Learn more about the new text fields in their article of the Material Guidelines.</p>
+</aside>
+<p class="image-container"><img style="width: 377.92px" src="img/d83c47fb4aed3a82.png"></p>
+<h2 is-upgraded><strong>Add the XML</strong></h2>
+<p>In <code>shr_login_fragment.xml</code>, add two <code>TextInputLayout</code> elements with a child <code>TextInputEditText</code> inside the <code>&lt;LinearLayout&gt;</code>, underneath the &#34;SHRINE&#34; label <code>&lt;TextView&gt;</code>:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/res/layout/shr_login_fragment.xml" target="_blank">shr_login_fragment.xml</a></h3>
+<pre><code>&lt;com.google.android.material.textfield.TextInputLayout
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_margin=&#34;4dp&#34;
+   android:hint=&#34;@string/shr_hint_username&#34;&gt;
+
+   &lt;com.google.android.material.textfield.TextInputEditText
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:inputType=&#34;text&#34;
+       android:maxLines=&#34;1&#34; /&gt;
+&lt;/com.google.android.material.textfield.TextInputLayout&gt;
+
+&lt;com.google.android.material.textfield.TextInputLayout
+   android:id=&#34;@+id/password_text_input&#34;
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_margin=&#34;4dp&#34;
+   android:hint=&#34;@string/shr_hint_password&#34;&gt;
+
+   &lt;com.google.android.material.textfield.TextInputEditText
+       android:id=&#34;@+id/password_edit_text&#34;
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;wrap_content&#34; /&gt;
+&lt;/com.google.android.material.textfield.TextInputLayout&gt;</code></pre>
+<aside class="special"><p>Tip: To quickly open a file in Android Studio, double-tap the <strong>Shift</strong> key to bring up a floating search bar, and type the name of the file you want to open.</p>
+</aside>
+<p>The above snippet represents two text fields, each consisting of a <code>&lt;TextInputLayout&gt;</code> element and a <code>&lt;TextInputEditText&gt;</code> child. The hint text for each text field is specified in the <code>android:hint</code> attribute.</p>
+<p>We&#39;ve included two new string resources for the text field -- <code>@string/shr_hint_username</code> and <code>@string/shr_hint_password</code>. Open <code>strings.xml</code> to see these string resources.</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/res/values/strings.xml" target="_blank">strings.xml</a></h3>
+<pre><code>...
+&lt;string name=&#34;shr_hint_username&#34;&gt;Username&lt;/string&gt;
+&lt;string name=&#34;shr_hint_password&#34;&gt;Password&lt;/string&gt;
+...</code></pre>
+<h2 is-upgraded><strong>Add input validation</strong></h2>
+<p><code>TextInputLayout</code> components provide built-in error feedback functionality.</p>
+<p>In order to show error feedback, make  the following changes to <code>shr_login_fragment.xml</code>:</p>
+<ul>
+<li>Set the <code>app:errorEnabled</code> attribute to true on the <strong>Password </strong><code>TextInputLayout</code> element. This will add extra padding for the error message underneath the text field.</li>
+<li>Set the <code>android:inputType</code> attribute to &#34;<code>textPassword</code>&#34; on the <strong>Password </strong><code>TextInputEditText</code> element. This will hide the input text in the password field.</li>
+</ul>
+<p>With these changes,  the text fields in <code>shr_login_fragment.xml</code> should look like this:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/res/layout/shr_login_fragment.xml" target="_blank">shr_login_fragment.xml</a></h3>
+<pre><code>&lt;com.google.android.material.textfield.TextInputLayout
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_margin=&#34;4dp&#34;
+   android:hint=&#34;@string/shr_hint_username&#34;&gt;
+
+   &lt;com.google.android.material.textfield.TextInputEditText
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:inputType=&#34;text&#34;
+       android:maxLines=&#34;1&#34; /&gt;
+&lt;/com.google.android.material.textfield.TextInputLayout&gt;
+
+&lt;com.google.android.material.textfield.TextInputLayout
+   android:id=&#34;@+id/password_text_input&#34;
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_margin=&#34;4dp&#34;
+   android:hint=&#34;@string/shr_hint_password&#34;
+   app:errorEnabled=&#34;true&#34;&gt;
+
+   &lt;com.google.android.material.textfield.TextInputEditText
+       android:id=&#34;@+id/password_edit_text&#34;
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:inputType=&#34;textPassword&#34;/&gt;
+&lt;/com.google.android.material.textfield.TextInputLayout&gt;</code></pre>
+<p>Now try running the app. You should see a page with two text fields for &#34;Username&#34; and &#34;Password&#34;!</p>
+<p>Check out the floating label animation:</p>
+<p class="image-container"><img style="width: 335.02px" src="img/333184b615aed4f7.gif"></p>
+<aside class="special"><p><a href="https://material.io/go/design-text-fields" target="_blank">MDC Text Field</a> features include:</p>
+<ul>
+<li>Displaying built-in error feedback</li>
+<li>Supporting a toggle for password visibility using <code>app:passwordToggleEnabled</code></li>
+<li>Offering built-in helper text functionality using <code>app:helperText</code></li>
+<li>Displaying total and max character counts using <code>app:counterEnabled</code> and <code>app:counterMaxLength</code></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Add buttons" duration="6">
+        <p>Next, we&#39;ll add two buttons to our login page: &#34;Cancel&#34; and &#34;Next.&#34; We&#39;ll use the MDC Button component, which comes with the iconic Material Design ink ripple effect built-in.</p>
+<p class="image-container"><img style="width: 366.36px" src="img/4cb0c218948144b4.png"></p>
+<h2 is-upgraded><strong>Add the XML</strong></h2>
+<p>In <code>shr_login_fragment.xml</code>, add a <code>&lt;RelativeLayout&gt;</code> to the <code>&lt;LinearLayout&gt;</code>, underneath the <code>TextInputLayout</code> elements. Then add two <code>&lt;MaterialButton&gt;</code> elements to the <code>&lt;RelativeLayout&gt;</code>. </p>
+<p>The resulting XML file should look like this:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/res/layout/shr_login_fragment.xml" target="_blank">shr_login_fragment.xml</a></h3>
+<pre><code>&lt;RelativeLayout
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;&gt;
+
+   &lt;com.google.android.material.button.MaterialButton
+       android:id=&#34;@+id/next_button&#34;
+       android:layout_width=&#34;wrap_content&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:layout_alignParentEnd=&#34;true&#34;
+       android:layout_alignParentRight=&#34;true&#34;
+       android:text=&#34;@string/shr_button_next&#34; /&gt;
+
+   &lt;com.google.android.material.button.MaterialButton
+       android:id=&#34;@+id/cancel_button&#34;
+       style=&#34;@style/Widget.MaterialComponents.Button.TextButton&#34;
+       android:layout_width=&#34;wrap_content&#34;
+       android:layout_height=&#34;wrap_content&#34;
+       android:layout_marginEnd=&#34;12dp&#34;
+       android:layout_marginRight=&#34;12dp&#34;
+       android:layout_toStartOf=&#34;@id/next_button&#34;
+       android:layout_toLeftOf=&#34;@id/next_button&#34;
+       android:text=&#34;@string/shr_button_cancel&#34; /&gt;
+
+&lt;/RelativeLayout&gt;</code></pre>
+<aside class="special"><p><strong>Note</strong>: The <code>MaterialButton</code> component has a default style of a colored, elevated button. For this Cancel button, however, we want an unelevated, unfilled button. To accomplish this, we apply a <code>style</code> attribute: <code>@style/Widget.MaterialComponents.Button.TextButton</code>. </p>
+</aside>
+<p>That&#39;s it! When you run the app, an ink ripple will display when you tap each button.</p>
+<p class="image-container"><img style="width: 312.18px" src="img/9dd162d65e4a92a2.gif"></p>
+<aside class="special"><p><a href="https://material.io/go/design-buttons" target="_blank">MDC Button</a> features include:</p>
+<ul>
+<li>Built-in touch feedback (called the MDC Ripple) by default</li>
+<li>Default elevation</li>
+<li>Customizable corner radius and stroke</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Navigate to the next Fragment" duration="6">
+        <p>Finally, we&#39;ll add some Java code to <code>LoginFragment.java</code> to hook up our &#34;NEXT&#34; button to another fragment. You&#39;ll notice that each of the components we added to our layout had an <code>id</code> assigned to it. We will use these <code>id</code>s to reference the components in our code and add some error checking and navigation. </p>
+<p>Let&#39;s add a private boolean <code>isPasswordValid</code> method in <code>LoginFragment.java</code> underneath <code>onCreateView()</code>, with logic to determine whether or not the password is valid. For the purposes of this demo, we&#39;ll just make sure that the password is at least 8 characters long:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/LoginFragment.java" target="_blank">LoginFragment.java</a></h3>
+<pre><code>/*
+   In reality, this will have more complex logic including, but not limited to, actual
+   authentication of the username and password.
+*/
+private boolean isPasswordValid(@Nullable Editable text) {
+   return text != null &amp;&amp; text.length() &gt;= 8;
+}</code></pre>
+<p>Next, add a click listener to the &#34;Next&#34; button that sets and clears the error based on the <code>isPasswordValid()</code> method we just created. In <code>onCreateView()</code>,  this click listener should be placed between the inflater line and the <code>return view</code> line.</p>
+<p>Next, let&#39;s add a key listener to the password <code>TextInputEditText</code> to listen for key events that would clear the error. This listener should also use <code>isPasswordValid()</code> to check whether or not the password is valid. You can add this directly underneath the click listener in <code>onCreateView()</code>.</p>
+<p>Your onCreateView() method should now look something like this:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/LoginFragment.java" target="_blank">LoginFragment.java</a></h3>
+<pre><code>@Override
+public View onCreateView(
+       @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+   // Inflate the layout for this fragment
+   View view = inflater.inflate(R.layout.shr_login_fragment, container, false);
+   final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
+   final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
+   MaterialButton nextButton = view.findViewById(R.id.next_button);
+
+   // Set an error if the password is less than 8 characters.
+   nextButton.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           if (!isPasswordValid(passwordEditText.getText())) {
+               passwordTextInput.setError(getString(R.string.shr_error_password));
+           } else {
+               passwordTextInput.setError(null); // Clear the error
+           }
+       }
+   });
+
+   // Clear the error once more than 8 characters are typed.
+   passwordEditText.setOnKeyListener(new View.OnKeyListener() {
+       @Override
+       public boolean onKey(View view, int i, KeyEvent keyEvent) {
+           if (isPasswordValid(passwordEditText.getText())) {
+               passwordTextInput.setError(null); //Clear the error
+           }
+           return false;
+       }
+   });
+   return view;
+}            </code></pre>
+<aside class="warning"><p>Note: If Android Studio encounters <strong>Cannot resolve symbol</strong> errors when writing this code, press <strong>Alt + Enter </strong>or (<strong>Option + Return</strong> on Mac) to import the missing symbols.</p>
+</aside>
+
+<p>Now, we can navigate to another fragment. Update the <code>OnClickListener</code> in <code>onCreateView()</code> to navigate to another fragment when error validation succeeds. You can accomplish this by adding the following line to navigate to <code>ProductGridFragment</code> to the <code>else</code> case of the click listener:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/LoginFragment.java" target="_blank">LoginFragment.java</a></h3>
+<pre><code>...
+((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
+...</code></pre>
+<p>Your click listener should now look as follows:</p>
+<h3 is-upgraded><a href="https://github.com/material-components/material-components-android-codelabs/blob/101-complete/java/shrine/app/src/main/java/com/google/codelabs/mdc/java/shrine/LoginFragment.java" target="_blank">LoginFragment.java</a></h3>
+<pre><code>...
+MaterialButton nextButton = view.findViewById(R.id.next_button);
+
+// Set an error if the password is less than 8 characters.
+nextButton.setOnClickListener(new View.OnClickListener() {
+   @Override
+   public void onClick(View view) {
+       if (!isPasswordValid(passwordEditText.getText())) {
+           passwordTextInput.setError(getString(R.string.shr_error_password));
+       } else {
+           passwordTextInput.setError(null); // Clear the error
+           ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
+       }
+   }
+});
+...</code></pre>
+<p>This new line of code calls the <code>navigateTo()</code> method from <code>MainActivity</code> to navigate to a new fragment -- <code>ProductGridFragment</code>. Currently this is an empty page which you&#39;ll work on in MDC-102. </p>
+<aside class="special"><p>The <code>false</code> parameter in <code>navigateTo()</code> tells the activity to not add the current fragment to the backstack, so the user will not be able to return to the login screen using their back key.</p>
+</aside>
+<p>Now, build the app. Go ahead and press the Next button.</p>
+<p>You did it! This screen will be the starting point of our next codelab that you&#39;ll work on in MDC-102.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="All done" duration="0">
+        <p>Using basic XML markup and ~30 lines of Java, the Material Components for Android library has helped you create a beautiful login page that conforms to the Material Design guidelines, and also looks and behaves  consistently across all devices.</p>
+<aside class="special"><p>The completed MDC 101 app is available by downloading the <a href="https://github.com/material-components/material-components-android-codelabs/archive/101-complete.zip" target="_blank">finished codelab</a>, or by checking out 101-complete with git: <code>git checkout 101-complete</code>.</p>
+<p>You can test your version of the page against the completed version by opening the <strong>Shrine</strong> project in that directory with Android Studio and running the app. </p>
+</aside>
+<h2 is-upgraded><strong>Next steps</strong></h2>
+<p>The Text Field and Button are two core components in the MDC Android library, but there are many more! You can explore the rest of the <a href="https://github.com/material-components/material-components-android" target="_blank">components in MDC Android</a>. Alternatively, head over to <a href="../mdc-102-java/index.html" target="_blank">MDC 102: Material Design Structure and Layout</a> to learn about the top app bar, card view, and grid layout. Thanks for trying Material Components. We hope you enjoyed this codelab!</p>
+<google-codelab-survey survey-id="mdc-101-java-4">
+<h4>I was able to complete this codelab with a reasonable amount of time and effort</h4>
+<paper-radio-group>
+<paper-radio-button>Strongly agree</paper-radio-button>
+<paper-radio-button>Agree</paper-radio-button>
+<paper-radio-button>Neutral</paper-radio-button>
+<paper-radio-button>Disagree</paper-radio-button>
+<paper-radio-button>Strongly disagree</paper-radio-button>
+</paper-radio-group>
+<h4>I would like to continue using Material Components in the future</h4>
+<paper-radio-group>
+<paper-radio-button>Strongly agree</paper-radio-button>
+<paper-radio-button>Agree</paper-radio-button>
+<paper-radio-button>Neutral</paper-radio-button>
+<paper-radio-button>Disagree</paper-radio-button>
+<paper-radio-button>Strongly disagree</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="../../elements/codelab-elements/native-shim.js"></script>
+  <script src="../../elements/codelab-elements/custom-elements.min.js"></script>
+  <script src="../../elements/codelab-elements/prettify.js"></script>
+  <script src="../../elements/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

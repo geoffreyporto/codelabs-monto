@@ -1,0 +1,13 @@
+{
+  "title": "NEXT Codelabs",
+  "description": "Codelabs proporciona una experiencia de codificación práctica, guiada y tutorial. La mayoría de los laboratorios de código le guiarán a través del proceso de creación de una pequeña aplicación o de agregar una nueva función a una aplicación existente.",
+  "tags": [],
+  "categories": [],
+  "exclude": [
+    "^lang-.*"
+  ],
+  "logoUrl": "/images/codelabs-logo.png",
+  "toolbarBgColor": "#37474F",
+  "sort": "mainCategory",
+  "pins": []
+}

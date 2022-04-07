@@ -1,0 +1,17 @@
+{
+    "title": "AndroLabs",
+    "description": "Laboratorio de Android.",
+    "tags": ["androlabs"],
+    "categories": ["programacion"],
+    "exclude": [
+        ".*-about$",
+        "^lang-.*"
+    ],
+    "logoUrl": "/images/android-logo.png",
+    "catLevel": 0,
+    "sort": "mainCategory",
+    "pins": [],
+    "ga": "",
+    "hidden": false
+}
+  
